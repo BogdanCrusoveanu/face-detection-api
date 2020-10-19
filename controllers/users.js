@@ -1,4 +1,4 @@
-handleUsersGet = (req, res, db) => {
+handleUsersGet = (db) => (req, res) => {
   db.select('*')
     .from('users')
     .then((users) => {

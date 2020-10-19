@@ -24,25 +24,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  users.handleUsersGet(req, res, db);
-});
+app.get('/', users.handleUsersGet(db));
 
-app.post('/signin', (req, res) => {
-  signIn.handleSignIn(req, res, db, bcrypt);
-});
+app.post('/signin', signIn.handleSignIn(db, bcrypt));
 
-app.post('/register', (req, res) => {
-  register.handleRegister(req, res, db, bcrypt);
-});
+app.post('/register', register.handleRegister(db, bcrypt));
 
-app.get('/profile/:id', (req, res) => {
-  profile.handleProfileGet(req, res, db);
-});
+app.get('/profile/:id', profile.handleProfileGet(db));
 
-app.put('/image', (req, res) => {
-  image.handleImage(req, res, db);
-});
+app.put('/image', image.handleImage(db));
 
 app.listen(3000, () => {
   console.log('app is running on port 3000');
